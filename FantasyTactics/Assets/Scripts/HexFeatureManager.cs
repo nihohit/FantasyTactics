@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class HexFeatureManager : MonoBehaviour {
 
@@ -38,7 +38,7 @@ public class HexFeatureManager : MonoBehaviour {
     position.y += instance.localScale.y;
     instance.localPosition = HexMetrics.Perturb(position);
     instance.localRotation = Quaternion.Euler(0f, 360f * hash.e, 0f);
-    var scale = 3f + (hash.b * cell.PlantLevel);
+    var scale = 8f + (hash.b * cell.PlantLevel);
     instance.localScale = new Vector3(scale, scale, scale);
     instance.SetParent(container, false);
   }
