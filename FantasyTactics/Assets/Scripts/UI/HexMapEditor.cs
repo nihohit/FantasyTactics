@@ -55,6 +55,10 @@ public class HexMapEditor : MonoBehaviour {
     applyPlantLevel = toggle;
   }
 
+  public void SetPlantLevel(float level) {
+    activePlantLevel = (int) level;
+  }
+
   public void SetBrushSize(float size) {
     brushSize = (int) size;
   }

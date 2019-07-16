@@ -58,6 +58,10 @@ public class HexGridChunk : MonoBehaviour {
     for (HexDirection d = HexDirection.NE; d <= HexDirection.NW; d++) {
       Triangulate(d, cell);
     }
+
+    if (!cell.IsUnderwater) {
+      features.AddFeature(cell);
+    }
   }
 
   void Triangulate(HexDirection direction, HexCell cell) {
@@ -68,10 +72,6 @@ public class HexGridChunk : MonoBehaviour {
     );
 
     TriangulateEdgeFan(center, e, cell.Index);
-
-    if (!cell.IsUnderwater) {
-      features.AddFeature(cell, (center + e.v1 + e.v5) * (1f / 3f));
-    }
 
     if (direction <= HexDirection.SE) {
       TriangulateConnection(direction, cell, e);
