@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using System;
+﻿using System;
 using System.IO;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class SaveLoadMenu : MonoBehaviour {
 
@@ -19,13 +19,12 @@ public class SaveLoadMenu : MonoBehaviour {
 
 	bool saveMode;
 
-	public void Open (bool saveMode) {
+	public void Open(bool saveMode) {
 		this.saveMode = saveMode;
 		if (saveMode) {
 			menuLabel.text = "Save Map";
 			actionButtonLabel.text = "Save";
-		}
-		else {
+		} else {
 			menuLabel.text = "Load Map";
 			actionButtonLabel.text = "Load";
 		}
@@ -34,30 +33,29 @@ public class SaveLoadMenu : MonoBehaviour {
 		HexMapCamera.Locked = true;
 	}
 
-	public void Close () {
+	public void Close() {
 		gameObject.SetActive(false);
 		HexMapCamera.Locked = false;
 	}
 
-	public void Action () {
+	public void Action() {
 		string path = GetSelectedPath();
 		if (path == null) {
 			return;
 		}
 		if (saveMode) {
 			Save(path);
-		}
-		else {
+		} else {
 			Load(path);
 		}
 		Close();
 	}
 
-	public void SelectItem (string name) {
+	public void SelectItem(string name) {
 		nameInput.text = name;
 	}
 
-	public void Delete () {
+	public void Delete() {
 		string path = GetSelectedPath();
 		if (path == null) {
 			return;
@@ -69,7 +67,7 @@ public class SaveLoadMenu : MonoBehaviour {
 		FillList();
 	}
 
-	void FillList () {
+	void FillList() {
 		for (int i = 0; i < listContent.childCount; i++) {
 			Destroy(listContent.GetChild(i).gameObject);
 		}
@@ -84,7 +82,7 @@ public class SaveLoadMenu : MonoBehaviour {
 		}
 	}
 
-	string GetSelectedPath () {
+	string GetSelectedPath() {
 		string mapName = nameInput.text;
 		if (mapName.Length == 0) {
 			return null;
@@ -92,8 +90,8 @@ public class SaveLoadMenu : MonoBehaviour {
 		return Path.Combine(Application.persistentDataPath, mapName + ".map");
 	}
 
-	void Save (string path) {
-		using (
+	void Save(string path) {
+		using(
 			BinaryWriter writer =
 			new BinaryWriter(File.Open(path, FileMode.Create))
 		) {
@@ -102,18 +100,17 @@ public class SaveLoadMenu : MonoBehaviour {
 		}
 	}
 
-	void Load (string path) {
+	void static Load(string path) {
 		if (!File.Exists(path)) {
 			Debug.LogError("File does not exist " + path);
 			return;
 		}
-		using (BinaryReader reader = new BinaryReader(File.OpenRead(path))) {
+		using(BinaryReader reader = new BinaryReader(File.OpenRead(path))) {
 			int header = reader.ReadInt32();
 			if (header <= mapFileVersion) {
 				hexGrid.Load(reader, header);
 				HexMapCamera.ValidatePosition();
-			}
-			else {
+			} else {
 				Debug.LogWarning("Unknown map format " + header);
 			}
 		}

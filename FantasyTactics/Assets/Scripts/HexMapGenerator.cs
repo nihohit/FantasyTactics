@@ -9,6 +9,8 @@ public class HexMapGenerator : MonoBehaviour {
 
 	public int seed;
 
+	public bool preloadMap;
+
 	[Range(0f, 0.5f)]
 	public float jitterProbability = 0.25f;
 
@@ -42,12 +44,12 @@ public class HexMapGenerator : MonoBehaviour {
 
 	int cellCount;
 
-	public void GenerateMap (int x, int z) {
+	public void GenerateMap(int x, int z) {
 		Random.State originalRandomState = Random.state;
 		if (!useFixedSeed) {
 			seed = Random.Range(0, int.MaxValue);
-			seed ^= (int)System.DateTime.Now.Ticks;
-			seed ^= (int)Time.unscaledTime;
+			seed ^= (int) System.DateTime.Now.Ticks;
+			seed ^= (int) Time.unscaledTime;
 			seed &= int.MaxValue;
 		}
 		Random.InitState(seed);
@@ -69,20 +71,19 @@ public class HexMapGenerator : MonoBehaviour {
 		Random.state = originalRandomState;
 	}
 
-	void CreateLand () {
+	void CreateLand() {
 		int landBudget = Mathf.RoundToInt(cellCount * landPercentage * 0.01f);
 		while (landBudget > 0) {
 			int chunkSize = Random.Range(chunkSizeMin, chunkSizeMax - 1);
 			if (Random.value < sinkProbability) {
 				landBudget = SinkTerrain(chunkSize, landBudget);
-			}
-			else {
+			} else {
 				landBudget = RaiseTerrain(chunkSize, landBudget);
 			}
 		}
 	}
 
-	int RaiseTerrain (int chunkSize, int budget) {
+	int RaiseTerrain(int chunkSize, int budget) {
 		searchFrontierPhase += 1;
 		HexCell firstCell = GetRandomCell();
 		firstCell.SearchPhase = searchFrontierPhase;
@@ -115,7 +116,7 @@ public class HexMapGenerator : MonoBehaviour {
 					neighbor.SearchPhase = searchFrontierPhase;
 					neighbor.Distance = neighbor.coordinates.DistanceTo(center);
 					neighbor.SearchHeuristic =
-						Random.value < jitterProbability ? 1: 0;
+						Random.value < jitterProbability ? 1 : 0;
 					searchFrontier.Enqueue(neighbor);
 				}
 			}
@@ -124,7 +125,7 @@ public class HexMapGenerator : MonoBehaviour {
 		return budget;
 	}
 
-	int SinkTerrain (int chunkSize, int budget) {
+	int SinkTerrain(int chunkSize, int budget) {
 		searchFrontierPhase += 1;
 		HexCell firstCell = GetRandomCell();
 		firstCell.SearchPhase = searchFrontierPhase;
@@ -157,7 +158,7 @@ public class HexMapGenerator : MonoBehaviour {
 					neighbor.SearchPhase = searchFrontierPhase;
 					neighbor.Distance = neighbor.coordinates.DistanceTo(center);
 					neighbor.SearchHeuristic =
-						Random.value < jitterProbability ? 1: 0;
+						Random.value < jitterProbability ? 1 : 0;
 					searchFrontier.Enqueue(neighbor);
 				}
 			}
@@ -166,7 +167,7 @@ public class HexMapGenerator : MonoBehaviour {
 		return budget;
 	}
 
-	void SetTerrainType () {
+	void SetTerrainType() {
 		for (int i = 0; i < cellCount; i++) {
 			HexCell cell = grid.GetCell(i);
 			if (!cell.IsUnderwater) {
@@ -175,7 +176,7 @@ public class HexMapGenerator : MonoBehaviour {
 		}
 	}
 
-	HexCell GetRandomCell () {
+	HexCell GetRandomCell() {
 		return grid.GetCell(Random.Range(0, cellCount));
 	}
 }
