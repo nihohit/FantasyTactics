@@ -17,7 +17,24 @@ public class SaveLoadMenu : MonoBehaviour {
 
 	public HexGrid hexGrid;
 
+	public bool preloadMap;
+
 	bool saveMode;
+	bool firstFrame = true;
+
+	public void Update() {
+		if (!firstFrame) {
+			return;
+		}
+
+		if (preloadMap) {
+			var map = Resources.Load<TextAsset>("bob");
+			Load(new MemoryStream(map.bytes));
+		}
+
+		firstFrame = false;
+		gameObject.active = false;
+	}
 
 	public void Open(bool saveMode) {
 		this.saveMode = saveMode;
@@ -92,20 +109,23 @@ public class SaveLoadMenu : MonoBehaviour {
 
 	void Save(string path) {
 		using(
-			BinaryWriter writer =
-			new BinaryWriter(File.Open(path, FileMode.Create))
+			var writer = new BinaryWriter(File.Open(path, FileMode.Create))
 		) {
 			writer.Write(mapFileVersion);
 			hexGrid.Save(writer);
 		}
 	}
 
-	void static Load(string path) {
+	void Load(string path) {
 		if (!File.Exists(path)) {
 			Debug.LogError("File does not exist " + path);
 			return;
 		}
-		using(BinaryReader reader = new BinaryReader(File.OpenRead(path))) {
+		Load(File.OpenRead(path));
+	}
+
+	void Load(Stream stream) {
+		using(var reader = new BinaryReader(stream)) {
 			int header = reader.ReadInt32();
 			if (header <= mapFileVersion) {
 				hexGrid.Load(reader, header);

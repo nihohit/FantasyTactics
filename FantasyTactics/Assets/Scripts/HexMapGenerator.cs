@@ -9,8 +9,6 @@ public class HexMapGenerator : MonoBehaviour {
 
 	public int seed;
 
-	public bool preloadMap;
-
 	[Range(0f, 0.5f)]
 	public float jitterProbability = 0.25f;
 
