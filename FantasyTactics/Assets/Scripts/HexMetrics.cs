@@ -70,7 +70,7 @@ public static class HexMetrics {
 
 	static float[][] featureThresholds = {
 		new float[] { 0.0f, 0.0f, 0.4f },
-		new float[] { 0.0f, 0.4f, 0.6f },
+		new float[] { 0.0f, 0.6f, 0.8f },
 		new float[] { 0.4f, 0.6f, 0.8f }
 	};
 
