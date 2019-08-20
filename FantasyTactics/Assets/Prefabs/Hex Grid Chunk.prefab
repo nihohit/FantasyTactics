@@ -43,43 +43,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7980a4cbe74644514bcd19be773f45c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  urbanCollections:
-  - prefabs:
-    - {fileID: 4000011812086372, guid: 21b1020286582424ab6d62085ed5ee87, type: 3}
-    - {fileID: 4000011812086372, guid: 5d26578fd32c84d1ab4d755ab7f23577, type: 3}
-  - prefabs:
-    - {fileID: 4000013436407900, guid: 89adbf41f320f4141964bfa388ba2865, type: 3}
-    - {fileID: 4000013436407900, guid: 2fad1b4af64d84c8e810f040299dec1e, type: 3}
-  - prefabs:
-    - {fileID: 4000013997932258, guid: bca46d0c670c447a0a5c7208498000ab, type: 3}
-    - {fileID: 4000013997932258, guid: 4c4b904516a814dc7b4433a49713c96f, type: 3}
-  farmCollections:
-  - prefabs:
-    - {fileID: 4000011812086372, guid: 694c4113acb734a299b240d50494600c, type: 3}
-    - {fileID: 4000011812086372, guid: 93fc8e728d60b44a28eac5ac0d4a0852, type: 3}
-  - prefabs:
-    - {fileID: 4000013436407900, guid: 2183fa930894243a69c8d48294482e53, type: 3}
-    - {fileID: 4000013436407900, guid: d0962edf5b6cf47f8b0a1fc7ae336c32, type: 3}
-  - prefabs:
-    - {fileID: 4000013997932258, guid: 15bb05f82a5564326ae50111c46b898b, type: 3}
-    - {fileID: 4000013997932258, guid: 5c6c17863f6cc4021bdced61fe712fb1, type: 3}
   plantCollections:
   - prefabs:
-    - {fileID: 400002, guid: 12c917bcdf8fce042a2a92fd33fa4032, type: 3}
-    - {fileID: 400002, guid: c478c00864de2df4cbb2395702dc44d8, type: 3}
+    - {fileID: 234116096014553116, guid: 5163147a5474944a1a048f4d2cd7ebab, type: 3}
+    - {fileID: 7607653673702016062, guid: c66430cfa20d8458f8110219959b43c8, type: 3}
   - prefabs:
-    - {fileID: 400002, guid: 129f0517e7d826844b87c8c15735d4c9, type: 3}
-    - {fileID: 400002, guid: d0a409b132372084987f40183993e371, type: 3}
+    - {fileID: 4220601162550216974, guid: e1debb1d4091a4d45b5319311d538e3b, type: 3}
+    - {fileID: 1653529907405186455, guid: 25609dc6d5c534f07a536aafdf81ac81, type: 3}
   - prefabs:
-    - {fileID: 400002, guid: fd1e003366ac8e14d80ebe9e47383317, type: 3}
-    - {fileID: 400002, guid: 8c6c7c16b3657434593e92af26aa1fff, type: 3}
-  walls: {fileID: 114000013599494320}
-  wallTower: {fileID: 4000011665626236, guid: 1589993158ba34786b54f448bdeb6085, type: 3}
-  bridge: {fileID: 4000012598710820, guid: 234387bb7219042168570e127fbd5b58, type: 3}
-  special:
-  - {fileID: 4000013750885840, guid: f2967fed6444e43559e32916c2465d27, type: 3}
-  - {fileID: 4000011263270592, guid: cb7be9a74fd6e4cbdb5be2ac7319e699, type: 3}
-  - {fileID: 4000012893891830, guid: cc90e6fbc542a40c080d2c64da7d26ed, type: 3}
+    - {fileID: 7386024430587185097, guid: f7cffe1facbea4b458c31e57f2354f11, type: 3}
+    - {fileID: 5542400653758387088, guid: c62d3ba18d5de4b05b18c931b5ef7dde, type: 3}
 --- !u!1 &1000010636493760
 GameObject:
   m_ObjectHideFlags: 0
@@ -878,9 +851,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   terrain: {fileID: 114000011082573560}
-  rivers: {fileID: 114000012954278246}
-  roads: {fileID: 114000011881523884}
   water: {fileID: 114000013445900128}
   waterShore: {fileID: 114000010976435170}
-  estuaries: {fileID: 114000013036081130}
   features: {fileID: 114000013279209982}
