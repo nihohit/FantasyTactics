@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class HexFeatureManager : MonoBehaviour {
 
@@ -35,10 +35,10 @@ public class HexFeatureManager : MonoBehaviour {
     }
 
     Transform instance = Instantiate(prefab);
-    position.y += instance.localScale.y;
-    instance.localPosition = HexMetrics.Perturb(position);
+    position.y += instance.localScale.y - 1.0f;
+    instance.localPosition = HexMetrics.Perturb(position, 16.0f);
     instance.localRotation = Quaternion.Euler(0f, 360f * hash.e, 0f);
-    var scale = 8f + (hash.b * cell.PlantLevel);
+    var scale = 6f + (hash.b * cell.PlantLevel);
     instance.localScale = new Vector3(scale, scale, scale);
     instance.SetParent(container, false);
   }

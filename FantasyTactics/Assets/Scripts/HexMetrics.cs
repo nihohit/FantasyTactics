@@ -27,7 +27,7 @@ public static class HexMetrics {
 
 	public const float verticalTerraceStepSize = 1f / (terracesPerSlope + 1);
 
-	public const float cellPerturbStrength = 1f;
+	public const float cellPerturbStrength = 4f;
 
 	public const float elevationPerturbStrength = 1.5f;
 
@@ -190,10 +190,10 @@ public static class HexMetrics {
 		return HexEdgeType.Cliff;
 	}
 
-	public static Vector3 Perturb(Vector3 position) {
+	public static Vector3 Perturb(Vector3 position, float perturbanceStrength = cellPerturbStrength) {
 		Vector4 sample = SampleNoise(position);
-		position.x += (sample.x * 2f - 1f) * cellPerturbStrength;
-		position.z += (sample.z * 2f - 1f) * cellPerturbStrength;
+		position.x += (sample.x * 2f - 1f) * perturbanceStrength;
+		position.z += (sample.z * 2f - 1f) * perturbanceStrength;
 		return position;
 	}
 }
