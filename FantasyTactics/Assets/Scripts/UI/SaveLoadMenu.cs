@@ -22,6 +22,10 @@ public class SaveLoadMenu : MonoBehaviour {
 	bool saveMode;
 	bool firstFrame = true;
 
+	private void Start() {
+		Debug.Log(Application.persistentDataPath);
+	}
+
 	public void Update() {
 		if (!firstFrame) {
 			return;
