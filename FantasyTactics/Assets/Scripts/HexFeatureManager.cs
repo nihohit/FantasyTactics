@@ -32,20 +32,12 @@ public class HexFeatureManager : MonoBehaviour {
       return;
     }
     var levelInverse = (4 - level);
-    var scale = (6f / levelInverse) + (hashD * 2);
+    var scale = level + (hashE * 2);
 
-    Debug.Log("position is: " + position);
-    var adjustedPosition = new Vector3(position.x + hashA, position.y + hashB, position.z + hashC);
-    var pertrubrance = HexMetrics.Perturb(adjustedPosition, 16.0f);
-    var difference = position - pertrubrance;
-    Debug.Log("difference is: " + difference);
-    difference.x *= (0.5f - hashA) * 2 * levelInverse;
-    difference.z *= (0.5f - hashE) * 2 * levelInverse;
-    Debug.Log("modified difference is: " + difference);
-
+    var adjustedPosition = position + HexMetrics.vectorInHex(new Vector2(hashA, hashD));
     Transform instance = Instantiate(prefab);
     position.y += instance.localScale.y - 1.0f;
-    instance.localPosition = pertrubrance;
+    instance.localPosition = adjustedPosition;
     instance.localRotation = Quaternion.Euler(0f, 360f * hashC, 0f);
     instance.localScale = new Vector3(scale, scale, scale);
     instance.SetParent(container, false);
@@ -61,7 +53,13 @@ public class HexFeatureManager : MonoBehaviour {
     var values = hash.values();
 
     for (int i = 0; i < numberOfItems; i++) {
-      addFeature(position, cell.PlantLevel, values[i % 5], values[(i + 1) % 5], values[(i + 2) % 5], values[(i + 3) % 5], values[(i + 4) % 5]);
+      addFeature(position,
+        cell.PlantLevel,
+        values[i % 5],
+        values[(i + 1) % 5],
+        values[(i + 2) % 5],
+        values[(i + 3) % 5],
+        values[(i + 4) % 5]);
     }
   }
 }

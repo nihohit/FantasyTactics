@@ -196,4 +196,12 @@ public static class HexMetrics {
 		position.z += (sample.z * 2f - 1f) * perturbanceStrength;
 		return position;
 	}
+
+	public static float valueInHex(float source) {
+		return (source * 1.5f - 0.75f) * innerRadius;
+	}
+
+	public static Vector3 vectorInHex(Vector2 source) {
+		return new Vector3(valueInHex(source.x), 0, valueInHex(source.y));
+	}
 }
